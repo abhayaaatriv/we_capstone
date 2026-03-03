@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --accent: #00ffb2;
+  --accent-dim: #00ffb250;
+  --bg-deep: #030a10;
+  --bg-card: #050d12;
+  --border: rgba(0, 255, 178, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-mono), 'Courier New', monospace;
+  cursor: crosshair;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 178, 0.15);
+  border-radius: 2px;
+}
+
+select option {
+  background: #050d12;
+}
+
+/* Skeleton pulse */
+@keyframes skeleton-pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
+}
+.skeleton {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+  background: rgba(0, 255, 178, 0.06);
+  border-radius: 4px;
+}
