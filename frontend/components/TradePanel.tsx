@@ -49,7 +49,7 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
   };
 
   return (
-    <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-6 space-y-5">
+    <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/20 rounded-2xl p-6 space-y-5">
       <div className="flex items-center justify-between">
         <h3 className="text-white font-bold tracking-wide font-sans text-sm uppercase">Execute Trade</h3>
         <div className="flex rounded-lg overflow-hidden border border-white/20">
@@ -60,9 +60,9 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
               className={`px-4 py-1.5 text-xs font-sans font-bold tracking-widest transition-all ${
                 mode === m
                   ? m === 'BUY'
-                    ? 'bg-emerald-500/20 text-emerald-400'
+                    ? 'bg-[#00ffb2]/20 text-[#00ffb2]'
                     : 'bg-red-500/20 text-red-400'
-                  : 'text-white/30 hover:text-white/60'
+                  : 'text-white/40 hover:text-white/60'
               }`}
             >
               {m}
@@ -73,7 +73,7 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
 
       {/* Symbol Select */}
       <div className="space-y-1.5">
-        <label className="text-xs text-white/40 font-sans uppercase tracking-widest">Symbol</label>
+        <label className="text-xs text-white font-sans uppercase tracking-widest">Symbol</label>
         <select
           value={symbol}
           onChange={(e) => setSymbol(e.target.value)}
@@ -89,7 +89,7 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
 
       {/* Shares Input */}
       <div className="space-y-1.5">
-        <label className="text-xs text-white/40 font-sans uppercase tracking-widest">Shares</label>
+        <label className="text-xs text-white font-sans uppercase tracking-widest">Shares</label>
         <input
           type="number"
           value={shares}
@@ -104,25 +104,25 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
       {/* Info rows */}
       <div className="space-y-2 py-3 border-t border-white/05">
         <div className="flex justify-between text-xs font-sans">
-          <span className="text-white/30">Price per share</span>
+          <span className="text-white/70">Price per share</span>
           <span className="text-white/70">${selectedStock?.price.toFixed(2) || '—'}</span>
         </div>
         <div className="flex justify-between text-xs font-sans">
-          <span className="text-white/30">Total cost</span>
+          <span className="text-white/70">Total cost</span>
           <span className={`font-bold ${sharesNum > 0 ? 'text-[#7effd4]' : 'text-white/30'}`}>
             ${total.toFixed(2)}
           </span>
         </div>
         {mode === 'BUY' && (
           <div className="flex justify-between text-xs font-sans">
-            <span className="text-white/30">Available cash</span>
-            <span className={total > cash ? 'text-red-400' : 'text-white/50'}>${cash.toFixed(2)}</span>
+            <span className="text-white/70">Available cash</span>
+            <span className={total > cash ? 'text-red-400' : 'text-white/70'}>${cash.toFixed(2)}</span>
           </div>
         )}
         {mode === 'SELL' && holding && (
           <div className="flex justify-between text-xs font-sans">
-            <span className="text-white/30">You own</span>
-            <span className="text-white/50">{holding.shares.toFixed(4)} shares</span>
+            <span className="text-white/70">You own</span>
+            <span className="text-white/70">{holding.shares.toFixed(4)} shares</span>
           </div>
         )}
       </div>
@@ -133,8 +133,8 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
         disabled={loading || !sharesNum || sharesNum <= 0}
         className={`w-full py-3 rounded-xl font-sans font-bold text-sm tracking-widest uppercase transition-all disabled:opacity-30 disabled:cursor-not-allowed ${
           mode === 'BUY'
-            ? 'bg-emerald-500/20 hover:bg-emerald-500/30 text-emerald-400 border border-emerald-500/30 hover:border-emerald-500/60'
-            : 'bg-red-500/20 hover:bg-red-500/30 text-red-400 border border-red-500/30 hover:border-red-500/60'
+            ? 'bg-[#00ffb2]/40 hover:bg-[#00ffb2]/60 text-[#00ffb2] border border-[#00ffb2]/30 hover:border-[#00ffb2]/60'
+            : 'bg-red-500/40 hover:bg-red-500/60 text-red-400 border border-red-500/30 hover:border-red-500/60'
         }`}
       >
         {loading ? 'Processing...' : `${mode} ${symbol}`}

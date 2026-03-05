@@ -17,7 +17,7 @@ export default function HoldingsView({ holdings }: { holdings: Holding[] }) {
 
   if (!holdings?.length) {
     return (
-      <div className="flex flex-col items-center justify-center h-40 text-white/20 font-sans text-sm">
+      <div className="flex flex-col items-center justify-center h-40 text-white/60 font-sans text-sm">
         <div className="text-4xl mb-3 opacity-30">◎</div>
         <p>No holdings yet. Start trading.</p>
       </div>
@@ -61,10 +61,10 @@ export default function HoldingsView({ holdings }: { holdings: Holding[] }) {
             {/* Info */}
             <div className="relative z-10 flex-1 min-w-0">
               <div className="flex items-baseline gap-2">
-                <span className="text-white font-sans font-bold text-sm">{h.symbol}</span>
-                <span className="text-white/30 text-xs font-sans">{h.shares.toFixed(4)} shares</span>
+              <div className="text-white/50 text-xs font-sans font-bold text-sm">{h.symbol}</div>
+                <span className="text-white/50 text-xs font-sans">{h.shares.toFixed(4)} shares</span>
               </div>
-              <div className="text-white/40 text-xs font-sans mt-0.5">
+              <div className="text-white/50 text-xs font-sans mt-0.5">
                 avg ${h.avg_price.toFixed(2)} · now ${h.current_price.toFixed(2)}
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function HoldingsView({ holdings }: { holdings: Holding[] }) {
 
             {/* Weight indicator */}
             <div className="relative z-10 flex-shrink-0">
-              <div className="text-white/20 text-xs font-sans">{h.weight.toFixed(1)}%</div>
+              <div className="text-white/50 text-xs font-sans">{h.weight.toFixed(1)}%</div>
             </div>
           </div>
         );

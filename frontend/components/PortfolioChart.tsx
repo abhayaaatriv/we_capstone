@@ -40,13 +40,13 @@ export default function PortfolioChart({ data, totalValue, gainPct }: PortfolioC
           <CartesianGrid strokeDasharray="3 3" stroke="rgba(255,255,255,0.03)" />
           <XAxis
             dataKey="time"
-            tick={{ fill: '#ffffff30', fontSize: 10, fontFamily: 'monospace' }}
+            tick={{ fill: '#ffffff50', fontSize: 10, fontFamily: 'monospace' }}
             axisLine={false}
             tickLine={false}
             interval="preserveStartEnd"
           />
           <YAxis
-            tick={{ fill: '#ffffff30', fontSize: 10, fontFamily: 'monospace' }}
+            tick={{ fill: '#ffffff50', fontSize: 10, fontFamily: 'monospace' }}
             axisLine={false}
             tickLine={false}
             domain={['auto', 'auto']}

@@ -47,33 +47,37 @@ export default function Dashboard() {
                     ? `${isPositive ? '+' : ''}${portfolio.gain_pct?.toFixed(2)}% all time`
                     : '',
                   color: isPositive ? 'text-emerald-400' : 'text-red-400',
+                  from: isPositive ? 'from-emerald-400/20' : 'from-red-400/20',
                 },
                 {
                   label: 'Cash Balance',
                   value: `$${portfolio?.cash?.toFixed(2) || '0.00'}`,
                   sub: `${((portfolio?.cash / portfolio?.total_value) * 100 || 0).toFixed(1)}% of portfolio`,
                   color: 'text-[#7effd4]',
+                  from: 'from-[#7effd4]/20',
                 },
                 {
                   label: 'Invested',
                   value: `$${portfolio?.holdings_value?.toFixed(2) || '0.00'}`,
                   sub: `${portfolio?.holdings?.length || 0} positions`,
                   color: 'text-sky-400',
+                  from: 'from-sky-400/20',
                 },
                 {
                   label: 'P&L',
                   value: `${isPositive ? '+' : ''}$${portfolio?.gain?.toFixed(2) || '0.00'}`,
                   sub: 'vs. $10,000 start',
                   color: isPositive ? 'text-emerald-400' : 'text-red-400',
+                  from: isPositive ? 'from-emerald-400/20' : 'from-red-400/20',
                 },
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="bg-[#0f0f0f] border border-white/10 rounded-xl p-4 space-y-1 hover:border-white/20 transition-all"
+                  className={`bg-gradient-to-b to-[#0f0f0f] ${stat.from} border border-white/10 rounded-xl p-4 space-y-1 hover:border-white/20 transition-all`}
                 >
-                  <div className="text-white/30 text-xs font-sans uppercase tracking-widest">{stat.label}</div>
+                  <div className="text-white/50 text-xs font-sans uppercase tracking-widest">{stat.label}</div>
                   <div className={`text-2xl font-black font-sans ${stat.color}`}>{stat.value}</div>
-                  <div className="text-white/30 text-xs font-sans">{stat.sub}</div>
+                  <div className="text-white/50 text-xs font-sans">{stat.sub}</div>
                 </div>
               ))}
         </div>
@@ -82,7 +86,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-3 gap-6">
           {/* Left side: Portfolio and Holdings (2/3 width) */}
           <div className="col-span-2 space-y-4">
-            <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5">
+            <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/10 rounded-2xl p-5">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-white font-sans font-bold text-sm uppercase tracking-widest">Portfolio Performance</h2>
                 <div className={`text-xs font-sans px-2 py-1 rounded ${isPositive ? 'bg-emerald-500/10 text-emerald-400' : 'bg-red-500/10 text-red-400'}`}>
@@ -103,7 +107,7 @@ export default function Dashboard() {
             </div>
 
             {/* Holdings */}
-            <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5">
+            <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/10 rounded-2xl p-5">
               <h2 className="text-white font-sans font-bold text-sm uppercase tracking-widest mb-4">Holdings</h2>
               {loading ? (
                 <div className="space-y-2">
@@ -129,7 +133,7 @@ export default function Dashboard() {
             )}
 
             {/* Recent transactions */}
-            <div className="bg-[#0f0f0f] border border-white/10 rounded-2xl p-5">
+            <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/10 rounded-2xl p-5">
               <h3 className="text-white font-sans font-bold text-xs uppercase tracking-widest mb-3">Recent Trades</h3>
             {transactions.length === 0 ? (
               <div className="text-white/20 text-xs font-sans text-center py-4">No trades yet</div>
