@@ -1,6 +1,7 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import StockTicker from './StockTicker';
 
 const NAV = [
   { href: '/dashboard', label: 'Dashboard', icon: '◈' },
@@ -8,38 +9,52 @@ const NAV = [
   { href: '/simulator', label: 'Simulator', icon: '◇' },
 ];
 
-export default function Nav() {
+interface NavProps {
+  stocks?: any[];
+}
+
+export default function Nav({ stocks }: NavProps) {
   const path = usePathname();
 
   return (
-    <nav className="flex items-center gap-1 px-6 py-4 border-b border-[#0ff2]/08 bg-[#030a10]/90 backdrop-blur-xl">
-      <Link href="/dashboard" className="mr-8 flex items-center gap-2">
-        <div className="w-7 h-7 rounded-md bg-[#00ffb2]/20 border border-[#00ffb2]/40 flex items-center justify-center text-[#00ffb2] text-xs font-black">
-          F
-        </div>
-        <span className="font-mono font-black text-white tracking-widest text-sm">FINORA</span>
-        <span className="text-[#00ffb2]/60 text-xs font-mono">BETA</span>
-      </Link>
-
-      {NAV.map((n) => (
-        <Link
-          key={n.href}
-          href={n.href}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-mono font-bold tracking-widest uppercase transition-all ${
-            path?.startsWith(n.href)
-              ? 'bg-[#00ffb2]/10 text-[#00ffb2] border border-[#00ffb2]/25'
-              : 'text-white/40 hover:text-white/70 hover:bg-white/5'
-          }`}
-        >
-          <span className="text-sm">{n.icon}</span>
-          {n.label}
+    <div className="sticky top-0 z-50">
+      <nav className="flex items-center px-6 py-4 border-b border-[#0ff2]/08 bg-[#030a10]/90 backdrop-blur-xl">
+        {/* Logo - Left */}
+        <Link href="/dashboard" className="flex items-center gap-2 flex-shrink-0">
+          <div className="w-7 h-7 rounded-md bg-[#00ffb2]/20 border border-[#00ffb2]/40 flex items-center justify-center text-[#00ffb2] text-xs font-black">
+            F
+          </div>
+          <span className="font-sans font-black text-white tracking-widest text-sm">FINORA</span>
+          <span className="text-[#00ffb2]/60 text-xs font-sans">BETA</span>
         </Link>
-      ))}
 
-      <div className="ml-auto flex items-center gap-3">
-        <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-        <span className="text-white/30 text-xs font-mono">LIVE</span>
-      </div>
-    </nav>
+        {/* Nav tabs - Center */}
+        <div className="flex-1 flex items-center justify-center gap-1">
+          {NAV.map((n) => (
+            <Link
+              key={n.href}
+              href={n.href}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                path?.startsWith(n.href)
+                  ? 'bg-[#00ffb2]/10 text-[#00ffb2] border border-[#00ffb2]/25'
+                  : 'text-white/40 hover:text-white/70 hover:bg-white/5'
+              }`}
+            >
+              <span className="text-base">{n.icon}</span>
+              {n.label}
+            </Link>
+          ))}
+        </div>
+
+        {/* Status - Right */}
+        <div className="flex items-center gap-3 flex-shrink-0">
+          <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+          <span className="text-white/30 text-xs font-sans">LIVE</span>
+        </div>
+      </nav>
+      
+      {/* Stock Ticker */}
+      {stocks && <StockTicker stocks={stocks} />}
+    </div>
   );
 }

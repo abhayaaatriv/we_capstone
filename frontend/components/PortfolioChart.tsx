@@ -12,7 +12,7 @@ interface PortfolioChartProps {
 const CustomTooltip = ({ active, payload }: any) => {
   if (!active || !payload?.length) return null;
   return (
-    <div className="bg-[#0a1929] border border-[#0ff2]/20 rounded-lg px-3 py-2 text-xs font-mono">
+    <div className="bg-[#0a1929] border border-[#0ff2]/20 rounded-lg px-3 py-2 text-xs font-sans">
       <p className="text-[#7effd4]">${payload[0].value.toFixed(2)}</p>
     </div>
   );

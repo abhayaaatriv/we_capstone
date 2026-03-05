@@ -1,13 +1,13 @@
 import type { Metadata } from 'next';
-import { Space_Mono } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
-import Nav from '@/components/Nav';
+import AppLayout from '@/components/AppLayout';
 import CursorGlowLayer from '@/components/CursorGlowLayer';
 
-const mono = Space_Mono({
-  weight: ['400', '700'],
+const poppins = Poppins({
+  weight: ['300', '400', '500', '600', '700'],
   subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-sans',
 });
 
 export const metadata: Metadata = {
@@ -17,12 +17,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={mono.variable}>
-      <body className="bg-[#030a10] text-white min-h-screen overflow-x-hidden">
+    <html lang="en" className={`${poppins.variable} ${poppins.variable}`}>
+      <body className="bg-[#030a10] text-white min-h-screen overflow-x-hidden font-sans">
         <CursorGlowLayer />
         <div className="relative z-10 min-h-screen flex flex-col">
-          <Nav />
-          <main className="flex-1">{children}</main>
+          <AppLayout>
+            <main className="flex-1">{children}</main>
+          </AppLayout>
         </div>
         {/* Background grid */}
         <div

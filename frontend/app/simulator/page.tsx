@@ -113,14 +113,14 @@ export default function SimulatorPage() {
       {/* Header */}
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="text-white font-mono font-black text-2xl uppercase tracking-widest">
+          <h1 className="text-white font-sans font-black text-2xl uppercase tracking-widest">
             Trading Simulator
           </h1>
-          <p className="text-white/40 text-sm font-mono mt-1">Learn to trade with zero real risk.</p>
+          <p className="text-white/40 text-sm font-sans mt-1">Learn to trade with zero real risk.</p>
         </div>
         <div className="text-right">
-          <div className="text-[#7effd4] font-mono font-black text-xl">{xpEarned} XP</div>
-          <div className="text-white/30 text-xs font-mono">{xpTotal - xpEarned} XP remaining</div>
+          <div className="text-[#7effd4] font-sans font-black text-xl">{xpEarned} XP</div>
+          <div className="text-white/30 text-xs font-sans">{xpTotal - xpEarned} XP remaining</div>
         </div>
       </div>
 
@@ -135,17 +135,17 @@ export default function SimulatorPage() {
           />
 
           {/* Finora AI panel */}
-          <div className="bg-[#050d12] border border-[#7effd4]/20 rounded-2xl p-5">
+          <div className="bg-[#0f0f0f] border border-[#7effd4]/20 rounded-2xl p-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-6 h-6 rounded-md bg-[#7effd4]/20 border border-[#7effd4]/40 flex items-center justify-center text-[#7effd4] text-xs font-black">
                 F
               </div>
-              <span className="text-[#7effd4] font-mono font-bold text-xs uppercase tracking-widest">Ask Finora AI</span>
-              <span className="text-[#7effd4]/40 text-[10px] font-mono ml-auto">Placeholder</span>
+              <span className="text-[#7effd4] font-sans font-bold text-xs uppercase tracking-widest">Ask Finora AI</span>
+              <span className="text-[#7effd4]/40 text-[10px] font-sans ml-auto">Placeholder</span>
             </div>
             <div
               key={currentThought}
-              className="text-white/60 text-xs font-mono leading-relaxed italic"
+              className="text-white/60 text-xs font-sans leading-relaxed italic"
               style={{ animation: 'fadeIn 0.5s ease' }}
             >
               "{FINORA_THOUGHTS[currentThought]}"
@@ -154,7 +154,7 @@ export default function SimulatorPage() {
               <input
                 type="text"
                 placeholder="Ask about your portfolio..."
-                className="w-full bg-transparent text-xs font-mono text-white/40 placeholder-white/20 outline-none"
+                className="w-full bg-transparent text-xs font-sans text-white/40 placeholder-white/20 outline-none"
                 disabled
               />
             </div>
@@ -164,7 +164,7 @@ export default function SimulatorPage() {
         {/* Middle: Tips */}
         <div className="space-y-4">
           <div className="bg-[#050d12] border border-[#0ff2]/08 rounded-2xl p-5">
-            <h2 className="text-white font-mono font-bold text-xs uppercase tracking-widest mb-4">Trading Tips</h2>
+            <h2 className="text-white font-sans font-bold text-xs uppercase tracking-widest mb-4">Trading Tips</h2>
             <div className="flex gap-2 mb-4">
               {TIPS.map((_, i) => (
                 <button
@@ -184,9 +184,9 @@ export default function SimulatorPage() {
               <div className="flex items-center gap-3">
                 <div className="text-2xl text-[#7effd4]">{TIPS[currentTip].icon}</div>
                 <div>
-                  <div className="text-white font-mono font-bold text-sm">{TIPS[currentTip].title}</div>
+                  <div className="text-white font-sans font-bold text-sm">{TIPS[currentTip].title}</div>
                   <div
-                    className={`text-[10px] font-mono px-1.5 py-0.5 rounded inline-block ${
+                    className={`text-[10px] font-sans px-1.5 py-0.5 rounded inline-block ${
                       TIPS[currentTip].level === 'Beginner'
                         ? 'bg-emerald-500/10 text-emerald-400'
                         : 'bg-sky-500/10 text-sky-400'
@@ -196,18 +196,18 @@ export default function SimulatorPage() {
                   </div>
                 </div>
               </div>
-              <p className="text-white/50 text-xs font-mono leading-relaxed">{TIPS[currentTip].body}</p>
+              <p className="text-white/50 text-xs font-sans leading-relaxed">{TIPS[currentTip].body}</p>
             </div>
             <div className="flex gap-2 mt-4">
               <button
                 onClick={() => setCurrentTip((c) => (c - 1 + TIPS.length) % TIPS.length)}
-                className="flex-1 py-2 text-xs font-mono text-white/30 hover:text-white/60 border border-white/08 rounded-lg transition-all"
+                className="flex-1 py-2 text-xs font-sans text-white/30 hover:text-white/60 border border-white/08 rounded-lg transition-all"
               >
                 ← Prev
               </button>
               <button
                 onClick={() => setCurrentTip((c) => (c + 1) % TIPS.length)}
-                className="flex-1 py-2 text-xs font-mono text-white/30 hover:text-white/60 border border-white/08 rounded-lg transition-all"
+                className="flex-1 py-2 text-xs font-sans text-white/30 hover:text-white/60 border border-white/08 rounded-lg transition-all"
               >
                 Next →
               </button>
@@ -217,7 +217,7 @@ export default function SimulatorPage() {
           {/* Portfolio snapshot */}
           {portfolio && (
             <div className="bg-[#050d12] border border-[#0ff2]/08 rounded-2xl p-5 space-y-3">
-              <h3 className="text-white font-mono font-bold text-xs uppercase tracking-widest">Your Status</h3>
+              <h3 className="text-white font-sans font-bold text-xs uppercase tracking-widest">Your Status</h3>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { label: 'Total Value', value: `$${portfolio.total_value?.toFixed(2)}`, color: 'text-white' },
@@ -226,8 +226,8 @@ export default function SimulatorPage() {
                   { label: 'Positions', value: portfolio.holdings?.length || 0, color: 'text-sky-400' },
                 ].map((stat, i) => (
                   <div key={i} className="bg-[#030a10] rounded-xl p-3">
-                    <div className="text-white/30 text-[10px] font-mono uppercase tracking-widest">{stat.label}</div>
-                    <div className={`font-mono font-bold text-base ${stat.color}`}>{stat.value}</div>
+                    <div className="text-white/30 text-[10px] font-sans uppercase tracking-widest">{stat.label}</div>
+                    <div className={`font-sans font-bold text-base ${stat.color}`}>{stat.value}</div>
                   </div>
                 ))}
               </div>
@@ -239,8 +239,8 @@ export default function SimulatorPage() {
         <div>
           <div className="bg-[#050d12] border border-[#0ff2]/08 rounded-2xl p-5">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-white font-mono font-bold text-xs uppercase tracking-widest">Challenges</h2>
-              <div className="text-[#7effd4] font-mono text-xs font-bold">{xpEarned}/{xpTotal} XP</div>
+              <h2 className="text-white font-sans font-bold text-xs uppercase tracking-widest">Challenges</h2>
+              <div className="text-[#7effd4] font-sans text-xs font-bold">{xpEarned}/{xpTotal} XP</div>
             </div>
 
             {/* XP Progress bar */}
@@ -271,12 +271,12 @@ export default function SimulatorPage() {
                     {c.done ? '✓' : '○'}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className={`font-mono font-bold text-xs ${c.done ? 'text-[#7effd4]' : 'text-white/60'}`}>
+                    <div className={`font-sans font-bold text-xs ${c.done ? 'text-[#7effd4]' : 'text-white/60'}`}>
                       {c.name}
                     </div>
-                    <div className="text-white/30 text-[10px] font-mono">{c.desc}</div>
+                    <div className="text-white/30 text-[10px] font-sans">{c.desc}</div>
                   </div>
-                  <div className={`text-xs font-mono font-bold flex-shrink-0 ${c.done ? 'text-[#7effd4]' : 'text-white/20'}`}>
+                  <div className={`text-xs font-sans font-bold flex-shrink-0 ${c.done ? 'text-[#7effd4]' : 'text-white/20'}`}>
                     +{c.xp}
                   </div>
                 </div>
