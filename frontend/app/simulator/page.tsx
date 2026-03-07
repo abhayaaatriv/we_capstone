@@ -97,20 +97,43 @@ export default function SimulatorPage() {
     return () => clearInterval(i);
   }, []);
 
-  const handleSendMessage = (e: React.FormEvent) => {
+  const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!userInput.trim()) return;
 
-    // Add user message
-    setChatMessages(prev => [...prev, { role: 'user', text: userInput }]);
-    
-    // Simulate AI response after a short delay
-    setTimeout(() => {
-      const randomResponse = AI_RESPONSES[Math.floor(Math.random() * AI_RESPONSES.length)];
-      setChatMessages(prev => [...prev, { role: 'ai', text: randomResponse }]);
-    }, 500);
+    const message = userInput;
 
-    setUserInput('');
+    // add user message
+    setChatMessages(prev => [...prev, { role: "user", text: message }]);
+    setUserInput("");
+
+    try {
+      const res = await fetch("/api/finora-chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message,
+          portfolio,
+          market,
+          transactions
+        })
+      });
+
+      const data = await res.json();
+
+      setChatMessages(prev => [
+        ...prev,
+        { role: "ai", text: data.reply }
+      ]);
+
+    } catch (err) {
+      setChatMessages(prev => [
+        ...prev,
+        { role: "ai", text: "Finora AI couldn't respond right now." }
+      ]);
+    }
   };
 
   // Evaluate challenges
