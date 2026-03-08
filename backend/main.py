@@ -1,10 +1,15 @@
-from fastapi import FastAPI, HTTPException, BackgroundTasks
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
+from pathlib import Path
+import json
 import asyncio
 import time
 from market import market_engine
 from portfolio import portfolio
+
+NEWS_FILE = Path(__file__).parent.parent / "frontend" / "public" / "news.json"
 
 app = FastAPI(title="MockStock API", version="1.0.0")
 
@@ -84,6 +89,18 @@ def sell_stock(req: TradeRequest):
         return {"transaction": tx, "portfolio": port}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+# --- News endpoint ---
+
+@app.get("/api/news")
+def get_news(limit: int = 10):
+    if not NEWS_FILE.exists():
+        return JSONResponse({"updated_at": None, "count": 0, "news": []})
+    data = json.loads(NEWS_FILE.read_text())
+    news = data.get("news", [])[:limit]
+    return JSONResponse({"updated_at": data["updated_at"], "count": len(news), "news": news})
+
+# --- Health endpoint ---
 
 @app.get("/health")
 def health():

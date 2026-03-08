@@ -10,10 +10,15 @@ async function fetchAPI(path: string, options?: RequestInit) {
 }
 
 export const api = {
-  getMarket: () => fetchAPI('/market'),
-  getStock: (symbol: string) => fetchAPI(`/market/${symbol}`),
-  getPortfolio: () => fetchAPI('/portfolio'),
+  getMarket:       () => fetchAPI('/market'),
+  getStock:        (symbol: string) => fetchAPI(`/market/${symbol}`),
+  getPortfolio:    () => fetchAPI('/portfolio'),
   getTransactions: () => fetchAPI('/transactions'),
+
+  // News
+  getNews:         (limit = 10) => fetchAPI(`/api/news?limit=${limit}`),
+  refreshNews:     () => fetchAPI('/api/news/refresh', { method: 'POST' }),
+
   buy: (symbol: string, shares: number) =>
     fetchAPI('/trade/buy', {
       method: 'POST',
