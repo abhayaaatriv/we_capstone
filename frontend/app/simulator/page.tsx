@@ -288,10 +288,10 @@ export default function SimulatorPage() {
         </div>
 
       {/* Right: Finora AI */}
-      <div className="h-full">
+      <div className="h-[calc(100vh-220px)] min-h-[520px]">
         <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-[#7effd4]/20 rounded-2xl p-6 h-full flex flex-col">
 
-          <div className="flex items-center gap-2 mb-4">
+          <div className="flex items-center gap-2 mb-4 shrink-0">
             <div className="w-7 h-7 rounded-md bg-[#7effd4]/20 border border-[#7effd4]/40 flex items-center justify-center text-[#7effd4] text-sm font-black">
               F
             </div>
@@ -300,7 +300,7 @@ export default function SimulatorPage() {
             </span>
           </div>
 
-          <div className="flex-1 overflow-y-auto space-y-3 mb-4">
+          <div className="flex-1 min-h-0 overflow-y-auto space-y-3 mb-4 pr-1">
             {chatMessages.map((msg, idx) => (
               <div
                 key={idx}
@@ -322,7 +322,7 @@ export default function SimulatorPage() {
             <div ref={chatEndRef} />
           </div>
 
-          <form onSubmit={handleSendMessage}>
+          <form onSubmit={handleSendMessage} className="shrink-0">
             <div className="flex gap-2">
               <input
                 value={userInput}
