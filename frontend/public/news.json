@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-08T10:47:45.038724+00:00",
+  "updated_at": "2026-03-08T11:04:49.510645+00:00",
   "count": 10,
   "news": [
     {
@@ -19,6 +19,14 @@
       "published": "2026-03-07T13:31:42+00:00"
     },
     {
+      "id": "753afba22a",
+      "title": "Best money market account rates today, March 7, 2026 (best account provides 4.01% APY)",
+      "body": "Some offers on this page are from advertisers who pay us, which may affect which products we write about, but not our recommendations. See our Advertiser Disclosure .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/personal-finance/banking/article/best-money-market-account-rates-today-saturday-march-7-2026-110033942.html",
+      "published": "2026-03-07T11:00:33+00:00"
+    },
+    {
       "id": "fe6d6e0f8e",
       "title": "Mortgage and refinance interest rates today, March 7, 2026: Rates rise as bond yields surge.",
       "body": "Some offers on this page are from advertisers who pay us, which may affect which products we write about, but not our recommendations. See our Advertiser Disclosure .",
@@ -27,12 +35,20 @@
       "published": "2026-03-07T11:00:08+00:00"
     },
     {
-      "id": "2210aa9db4",
-      "title": "Amprius (AMPX) Soars to All-Time High on PT Hike After Earnings Blowout",
-      "body": "Amprius Technologies Inc. (NYSE:AMPX) is one of the 10 Stocks to Watch Right Now.",
+      "id": "d028b445b3",
+      "title": "Is Amazon Stock a Long-Term Buy?",
+      "body": "There's no denying the fact that Amazon (NASDAQ: AMZN) is one of the most disruptive businesses out there. The company upended the retail sector.",
       "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/amprius-ampx-soars-time-high-062402296.html",
-      "published": "2026-03-07T06:24:02+00:00"
+      "url": "https://finance.yahoo.com/news/amazon-stock-long-term-buy-083500056.html",
+      "published": "2026-03-07T08:35:00+00:00"
+    },
+    {
+      "id": "07aa16f5a7",
+      "title": "Hyperscalers Are Investing Heavily in Data Centers. These 3 Stocks Could Be Big Winners.",
+      "body": "The technology industry is currently investing massive amounts of capital into new data centers to support the rapid expansion of artificial intelligence and cloud-based services.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/hyperscalers-investing-heavily-data-centers-082500262.html",
+      "published": "2026-03-07T08:25:00+00:00"
     },
     {
       "id": "e2f782931d",
@@ -41,22 +57,6 @@
       "source": "Yahoo Finance",
       "url": "https://finance.yahoo.com/news/xpeng-xpev-soars-ahead-earnings-061109881.html",
       "published": "2026-03-07T06:11:09+00:00"
-    },
-    {
-      "id": "a0f096179d",
-      "title": "How Is W.W. Grainger's Stock Performance Compared to Other Industrial Stocks?",
-      "body": "Lake Forest, Illinois-based W.W. Grainger, Inc. (GWW) is a leading broad-line industrial distributor of maintenance, repair, and operating (MRO) products and services. Valued at a market cap of $54.3 billion, the company offers everything from motors and lighting to safety gear.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/w-w-graingers-stock-performance-053556221.html",
-      "published": "2026-03-07T05:35:56+00:00"
-    },
-    {
-      "id": "288957a468",
-      "title": "Fortinet Stock: Is FTNT Outperforming the Technology Sector?",
-      "body": "Valued at a market cap of $62.5 billion, Fortinet, Inc.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/fortinet-stock-ftnt-outperforming-technology-044720714.html",
-      "published": "2026-03-07T04:47:20+00:00"
     },
     {
       "id": "90c82638e6",
