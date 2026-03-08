@@ -2,7 +2,6 @@ import feedparser
 import json
 import hashlib
 import re
-import random
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
@@ -20,8 +19,8 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 REFRESH_SECONDS = 1800
 
 OUTPUT_FILE  = Path(__file__).parent.parent / "frontend" / "public" / "news.json"
-NEWS_PER_RUN = 10
-MAX_PER_FEED = 20
+NEWS_PER_RUN = 25
+MAX_PER_FEED = 40
 
 RSS_FEEDS = [
     {"name": "CNBC",          "url": "https://www.cnbc.com/id/100003114/device/rss/rss.html"},
@@ -87,6 +86,17 @@ def news_id(title: str) -> str:
     return hashlib.md5(title.lower().strip().encode()).hexdigest()[:10]
 
 
+def normalize_title(title: str) -> str:
+    # Normalize punctuation/spacing so near-identical headlines dedupe cleanly.
+    return re.sub(r"[^a-z0-9]+", " ", title.lower()).strip()
+
+
+def canonical_url(url: str) -> str:
+    # Drop trackers/query params and trailing slash to dedupe same story URLs.
+    base = url.split("?", 1)[0].split("#", 1)[0].strip().rstrip("/")
+    return base.lower()
+
+
 def get_body(entry, url: str) -> str:
     try:
         resp = requests.get(url, headers=HEADERS, timeout=8)
@@ -109,8 +119,9 @@ def get_body(entry, url: str) -> str:
 #  SCRAPE
 
 def scrape_financial_news() -> list[dict]:
-    by_source: dict[str, list[dict]] = {f["name"]: [] for f in RSS_FEEDS}
-    seen_ids: set[str] = set()
+    all_items: list[dict] = []
+    seen_titles: set[str] = set()
+    seen_urls: set[str] = set()
 
     for feed_info in RSS_FEEDS:
         try:
@@ -128,19 +139,27 @@ def scrape_financial_news() -> list[dict]:
             if not is_within_24h(pub_dt):
                 continue
 
-            uid = news_id(title)
-            if uid in seen_ids:
+            norm_title = normalize_title(title)
+            if norm_title in seen_titles:
                 continue
-            seen_ids.add(uid)
 
             url = entry.get("link", "#")
+            canon_url = canonical_url(url)
+            if canon_url and canon_url != "#" and canon_url in seen_urls:
+                continue
+
             body = get_body(entry, url)
             if not body or len(body) < 30:
                 continue
 
+            uid = news_id(title)
+            seen_titles.add(norm_title)
+            if canon_url and canon_url != "#":
+                seen_urls.add(canon_url)
+
             published_iso = pub_dt.isoformat() if pub_dt else datetime.now(timezone.utc).isoformat()
 
-            by_source[feed_info["name"]].append({
+            all_items.append({
                 "id":        uid,
                 "title":     title,
                 "body":      body,
@@ -149,24 +168,8 @@ def scrape_financial_news() -> list[dict]:
                 "published": published_iso,
             })
 
-        random.shuffle(by_source[feed_info["name"]])
-
-    final: list[dict] = []
-    source_queues = [q for q in by_source.values() if q]
-    random.shuffle(source_queues)
-
-    while len(final) < NEWS_PER_RUN and source_queues:
-        still_has_items = []
-        for queue in source_queues:
-            if len(final) >= NEWS_PER_RUN:
-                break
-            if queue:
-                final.append(queue.pop(0))
-                if queue:
-                    still_has_items.append(queue)
-        source_queues = still_has_items
-
-    final.sort(key=lambda x: x.get("published", ""), reverse=True)
+    all_items.sort(key=lambda x: x.get("published", ""), reverse=True)
+    final = all_items[:NEWS_PER_RUN]
     return final
 
 

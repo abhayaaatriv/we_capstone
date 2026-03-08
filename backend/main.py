@@ -93,7 +93,7 @@ def sell_stock(req: TradeRequest):
 # --- News endpoint ---
 
 @app.get("/api/news")
-def get_news(limit: int = 10):
+def get_news(limit: int = 25):
     if not NEWS_FILE.exists():
         return JSONResponse({"updated_at": None, "count": 0, "news": []})
     data = json.loads(NEWS_FILE.read_text())
