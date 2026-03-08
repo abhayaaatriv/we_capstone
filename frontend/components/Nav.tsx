@@ -7,6 +7,7 @@ const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: "◈" },
   { href: "/market", label: "Market", icon: "◎" },
   { href: "/simulator", label: "Simulator", icon: "◇" },
+  { href: "/news", label: "News", icon: "◇" },
 ];
 
 interface NavProps {
@@ -18,6 +19,13 @@ export default function Nav({ stocks }: NavProps) {
 
   const isPublicPage =
     path === "/" || path?.startsWith("/login") || path?.startsWith("/register");
+
+  const showTicker =
+    !!stocks &&
+    (path?.startsWith("/dashboard") ||
+      path?.startsWith("/market") ||
+      path?.startsWith("/simulator") ||
+      path?.startsWith("/news"));
 
   return (
     <div className="sticky top-0 z-50">
@@ -59,8 +67,8 @@ export default function Nav({ stocks }: NavProps) {
         </div>
       </nav>
 
-      {/* Stock ticker only when logged pages */}
-      {stocks && <StockTicker stocks={stocks} />}
+      {/* Stock ticker only on core trading pages */}
+      {showTicker && <StockTicker stocks={stocks} />}
     </div>
   );
 }

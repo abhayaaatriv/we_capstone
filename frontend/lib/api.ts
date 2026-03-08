@@ -16,7 +16,7 @@ export const api = {
   getTransactions: () => fetchAPI('/transactions'),
 
   // News
-  getNews:         (limit = 10) => fetchAPI(`/api/news?limit=${limit}`),
+  getNews:         (limit = 25) => fetchAPI(`/api/news?limit=${limit}`),
   refreshNews:     () => fetchAPI('/api/news/refresh', { method: 'POST' }),
 
   buy: (symbol: string, shares: number) =>

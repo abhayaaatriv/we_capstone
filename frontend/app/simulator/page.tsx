@@ -3,34 +3,6 @@ import { useState, useEffect, useRef } from "react";
 import { api } from "@/lib/api";
 import TradePanel from "@/components/TradePanel";
 
-interface NewsItem {
-  id: string;
-  title: string;
-  body: string;
-  source: string;
-  url: string;
-  published: string;
-}
-
-const SOURCE_STYLE: Record<string, { dot: string; label: string }> = {
-  "CNBC":          { dot: "bg-yellow-400",  label: "text-yellow-400"  },
-  "Reuters":       { dot: "bg-orange-400",  label: "text-orange-400"  },
-  "Yahoo Finance": { dot: "bg-violet-400",  label: "text-violet-400"  },
-  "Finshots":      { dot: "bg-[#00ffb2]",   label: "text-[#7effd4]"   },
-};
-const DEFAULT_STYLE = { dot: "bg-sky-400", label: "text-sky-400" };
-
-function timeAgo(dateStr: string): string {
-  if (!dateStr) return "";
-  const diff = Date.now() - new Date(dateStr).getTime();
-  const m = Math.floor(diff / 60000);
-  if (m < 1)  return "just now";
-  if (m < 60) return `${m}m ago`;
-  const h = Math.floor(m / 60);
-  if (h < 24) return `${h}h ago`;
-  return `${Math.floor(h / 24)}d ago`;
-}
-
 const CHALLENGES = {
   beginner: [
     { id: 1, name: "First Trade", desc: "Make your first buy order", xp: 50 },
@@ -54,10 +26,6 @@ export default function SimulatorPage() {
   const [portfolio, setPortfolio]       = useState<any>(null);
   const [market, setMarket]             = useState<any[]>([]);
   const [transactions, setTransactions] = useState<any[]>([]);
-  const [news, setNews]               = useState<NewsItem[]>([]);
-  const [currentNews, setCurrentNews] = useState(0);
-  const [newsLoading, setNewsLoading] = useState(true);
-  const [newsUpdatedAt, setNewsUpdatedAt] = useState<string | null>(null);
 
   const [chatMessages, setChatMessages] = useState<
     { role: "user" | "ai"; text: string }[]
@@ -93,25 +61,6 @@ export default function SimulatorPage() {
     fetchAll();
     const i = setInterval(fetchAll, 4000);
     return () => clearInterval(i);
-  }, []);
-
-  const fetchNews = () => {
-    api.getNews(10)
-      .then((data: any) => {
-        if (data.news?.length) {
-          setNews(data.news);
-          setNewsUpdatedAt(data.updated_at);
-          setCurrentNews(0);
-        }
-      })
-      .catch(() => console.warn('News API unavailable.'))
-      .finally(() => setNewsLoading(false));
-  };
-
-  useEffect(() => {
-    fetchNews();
-    const interval = setInterval(fetchNews, 30 * 60 * 1000);
-    return () => clearInterval(interval);
   }, []);
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -180,16 +129,6 @@ export default function SimulatorPage() {
     .reduce((a: number, c: any) => a + c.xp, 0);
 
   const xpTotal = allChallenges.reduce((a: number, c: any) => a + c.xp, 0);
-
-  const safeItem   = news[currentNews % Math.max(news.length, 1)];
-  const sourceStyle = safeItem ? (SOURCE_STYLE[safeItem.source] ?? DEFAULT_STYLE) : DEFAULT_STYLE;
-
-  const formattedUpdatedAt = newsUpdatedAt
-    ? new Date(newsUpdatedAt).toLocaleString(undefined, {
-        month: 'short', day: 'numeric',
-        hour: '2-digit', minute: '2-digit',
-      })
-    : null;
 
   return (
   <div className="flex-1 overflow-auto p-6 space-y-6">
@@ -271,7 +210,7 @@ export default function SimulatorPage() {
         )}
       </div>
 
-      {/* Middle: Challenges + Tips */}
+      {/* Middle: Challenges */}
       <div className="space-y-4 flex flex-col">
 
         {/* Challenges */}
@@ -346,123 +285,6 @@ export default function SimulatorPage() {
             ))}
           </div>
         </div>
-
-          {/* ── Market News Panel ── */}
-          <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/20 rounded-2xl p-6 flex-1">
-
-            {/* Header */}
-            <div className="flex items-center justify-between mb-1">
-              <h3 className="text-white font-sans font-bold text-sm uppercase tracking-wide">
-                Market News
-              </h3>
-              {newsLoading ? (
-                <span className="text-[10px] text-white/20 font-sans animate-pulse">Loading…</span>
-              ) : (
-                <span className="flex items-center gap-1 text-[10px] text-[#7effd4]/60 font-sans">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#00ffb2] animate-pulse inline-block" />
-                  Live · 30m
-                </span>
-              )}
-            </div>
-
-            {/* Last updated */}
-            {formattedUpdatedAt && (
-              <p className="text-[10px] text-white/20 font-sans mb-3">
-                Updated {formattedUpdatedAt}
-              </p>
-            )}
-
-            {/* Dot nav */}
-            {news.length > 0 && (
-              <div className="flex gap-1 mb-4 flex-wrap">
-                {news.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentNews(i)}
-                    className={`h-1 rounded-full transition-all ${
-                      i === currentNews
-                        ? 'bg-[#00ffb2] w-4'
-                        : 'bg-white/10 w-2'
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-
-            {/* News card */}
-            {newsLoading && (
-              <div className="space-y-2 animate-pulse">
-                <div className="h-3 bg-white/05 rounded w-3/4" />
-                <div className="h-3 bg-white/05 rounded w-full" />
-                <div className="h-3 bg-white/05 rounded w-2/3" />
-              </div>
-            )}
-
-            {!newsLoading && news.length === 0 && (
-              <p className="text-white/20 text-xs font-sans">No news available right now.</p>
-            )}
-
-            {!newsLoading && safeItem && (
-              <div key={currentNews} className="space-y-2" style={{ animation: 'fadeIn 0.3s ease' }}>
-
-                {/* Source + time */}
-                <div className="flex items-center gap-2">
-                  <span className={`w-1.5 h-1.5 rounded-full flex-shrink-0 ${sourceStyle.dot}`} />
-                  <span className={`text-[10px] font-sans font-semibold uppercase tracking-widest ${sourceStyle.label}`}>
-                    {safeItem.source}
-                  </span>
-                  <span className="text-[10px] text-white/20 font-sans ml-auto">
-                    {timeAgo(safeItem.published)}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h4 className="text-white font-sans font-bold text-sm leading-snug">
-                  {safeItem.title}
-                </h4>
-
-                {/* Summary */}
-                <p className="text-white/50 text-xs font-sans leading-relaxed">
-                  {safeItem.body}
-                </p>
-
-                {/* Read more */}
-                {safeItem.url !== '#' && (
-                  <a
-                    href={safeItem.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block text-[10px] text-white/20 hover:text-[#7effd4]/60 transition-colors mt-1"
-                  >
-                    Read full story ↗
-                  </a>
-                )}
-
-                {/* Counter */}
-                <div className="text-[10px] text-white/15 font-sans text-right">
-                  {currentNews + 1} / {news.length}
-                </div>
-              </div>
-            )}
-
-            {/* Prev / Next */}
-            {news.length > 0 && (
-              <div className="flex gap-2 mt-4">
-                <button
-                  onClick={() => setCurrentNews(c => (c - 1 + news.length) % news.length)}
-                  className="flex-1 py-1.5 text-xs font-sans text-white/30 hover:text-white/60 border border-white/08 rounded transition-all"
-                >
-                  ← Prev
-                </button>
-                <button
-                  onClick={() => setCurrentNews(c => (c + 1) % news.length)}
-                  className="flex-1 py-1.5 text-xs font-sans text-white/30 hover:text-white/60 border border-white/08 rounded transition-all"
-                >
-                  Next →
-                </button>
-              </div>
-            )}
-          </div>
         </div>
 
       {/* Right: Finora AI */}

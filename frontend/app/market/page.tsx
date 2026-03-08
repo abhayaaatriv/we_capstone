@@ -31,8 +31,6 @@ export default function MarketPage() {
     return () => clearInterval(interval);
   }, [selected]);
 
-  const sectors = Array.from(new Set(stocks.map((s) => s.sector)));
-
   return (
     <div className="h-full flex flex-col">
 
@@ -61,12 +59,12 @@ export default function MarketPage() {
                   const isSel = selected === s.symbol;
 
                   const borderColor = isPos
-                    ? "border-emerald-400/20"
-                    : "border-red-400/20";
+                    ? 'border-emerald-400/20'
+                    : 'border-red-400/20';
 
                   const bgStyle = isSel
-                    ? "bg-[#00ffb2]/05"
-                    : `bg-gradient-to-b ${isPos ? "from-emerald-400/20" : "from-red-400/20"} to-[#0f0f0f]`;
+                    ? 'bg-[#00ffb2]/05'
+                    : `bg-gradient-to-b ${isPos ? 'from-emerald-400/20' : 'from-red-400/20'} to-[#0f0f0f]`;
 
                   return (
                     <button
@@ -87,8 +85,8 @@ export default function MarketPage() {
                         <span
                           className={`text-[10px] font-sans px-1.5 py-0.5 rounded tracking-wider ${
                             isPos
-                              ? "bg-emerald-500/10 text-emerald-400"
-                              : "bg-red-500/10 text-red-400"
+                              ? 'bg-emerald-500/10 text-emerald-400'
+                              : 'bg-red-500/10 text-red-400'
                           }`}
                         >
                           {s.sector}
@@ -102,10 +100,10 @@ export default function MarketPage() {
 
                         <div
                           className={`text-sm font-sans font-bold ${
-                            isPos ? "text-emerald-400" : "text-red-400"
+                            isPos ? 'text-emerald-400' : 'text-red-400'
                           }`}
                         >
-                          {isPos ? "+" : ""}
+                          {isPos ? '+' : ''}
                           {s.change_pct.toFixed(2)}%
                         </div>
                       </div>
