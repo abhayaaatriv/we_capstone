@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-03-08T10:09:01.501020+00:00",
+  "updated_at": "2026-03-08T10:47:45.038724+00:00",
   "count": 10,
   "news": [
     {
@@ -17,6 +17,14 @@
       "source": "CNBC",
       "url": "https://www.cnbc.com/2026/03/07/berkshire-ceo-greg-abel-on-working-with-buffett-kraft-heinz-and-using-all-his-salary-to-buy-the-stock.html",
       "published": "2026-03-07T13:31:42+00:00"
+    },
+    {
+      "id": "fe6d6e0f8e",
+      "title": "Mortgage and refinance interest rates today, March 7, 2026: Rates rise as bond yields surge.",
+      "body": "Some offers on this page are from advertisers who pay us, which may affect which products we write about, but not our recommendations. See our Advertiser Disclosure .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-interest-rates-today-saturday-march-7-2026-110008005.html",
+      "published": "2026-03-07T11:00:08+00:00"
     },
     {
       "id": "2210aa9db4",
@@ -49,14 +57,6 @@
       "source": "Yahoo Finance",
       "url": "https://finance.yahoo.com/news/fortinet-stock-ftnt-outperforming-technology-044720714.html",
       "published": "2026-03-07T04:47:20+00:00"
-    },
-    {
-      "id": "5cd129e05e",
-      "title": "Erste Group Downgrades Walmart (WMT) to Hold from Buy; FTC Settlement Adds Pressure",
-      "body": "Walmart Inc. (NASDAQ: WMT ) is included among the 13 Best Defensive Dividend Stocks for 2025 .",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/erste-group-downgrades-walmart-wmt-022941385.html",
-      "published": "2026-03-07T02:29:41+00:00"
     },
     {
       "id": "90c82638e6",

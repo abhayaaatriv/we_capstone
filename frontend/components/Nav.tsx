@@ -25,7 +25,6 @@ export default function Nav({ stocks }: NavProps) {
             F
           </div>
           <span className="font-sans font-black text-white tracking-widest text-sm">FINORA</span>
-          <span className="text-[#00ffb2]/60 text-xs font-sans">BETA</span>
         </Link>
 
         {/* Nav tabs - Center */}
