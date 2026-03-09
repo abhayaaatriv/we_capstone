@@ -18,6 +18,17 @@ mock-stock-sim/
 - Python 3.9+
 - pip
 
+### Optional: Load the full NSE symbol universe
+If you want access to the full NSE universe (not just the built-in demo stocks), you can fetch the latest symbol list via `nsetools`.
+
+```bash
+cd backend
+pip install -r requirements.txt
+python scripts/fetch_nse_symbols.py
+```
+
+The backend will cache the symbol list in `backend/nse_symbols.json` and use it when `USE_NSETOOLS=1`.
+
 ### Option 1: Run with the start script
 
 ```bash
@@ -55,7 +66,7 @@ Then open [http://localhost:3000](http://localhost:3000)
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| GET | `/market` | All stock prices |
+| GET | `/market` | All stock prices (supports `?q=` search, `limit`, `offset`) |
 | GET | `/market/{symbol}` | Single stock + history |
 | GET | `/portfolio` | Cash, holdings, P&L |
 | GET | `/transactions` | Trade history |

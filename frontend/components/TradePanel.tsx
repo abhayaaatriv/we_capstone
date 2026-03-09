@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { api } from '@/lib/api';
 
 interface Stock {
@@ -19,14 +19,47 @@ interface TradePanelProps {
 export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePanelProps) {
   const [mode, setMode] = useState<'BUY' | 'SELL'>('BUY');
   const [symbol, setSymbol] = useState('AAPL');
+  const [search, setSearch] = useState('');
   const [shares, setShares] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ text: string; ok: boolean } | null>(null);
 
-  const selectedStock = stocks.find((s) => s.symbol === symbol);
+  const [searchResults, setSearchResults] = useState<Stock[]>([]);
+  const [searching, setSearching] = useState(false);
+
+  const visibleStocks = search.trim() ? searchResults : stocks;
+
+  const selectedStock = visibleStocks.find((s) => s.symbol === symbol);
   const sharesNum = parseFloat(shares) || 0;
   const total = sharesNum * (selectedStock?.price || 0);
   const holding = holdings.find((h) => h.symbol === symbol);
+
+  useEffect(() => {
+    if (!search.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    const handle = window.setTimeout(async () => {
+      setSearching(true);
+      try {
+        const res = await api.getMarket(search.trim(), 50);
+        setSearchResults(res.stocks || []);
+      } catch {
+        setSearchResults([]);
+      }
+      setSearching(false);
+    }, 300);
+
+    return () => window.clearTimeout(handle);
+  }, [search]);
+
+  useEffect(() => {
+    if (visibleStocks.length === 0) return;
+    if (!visibleStocks.some((s) => s.symbol === symbol)) {
+      setSymbol(visibleStocks[0].symbol);
+    }
+  }, [visibleStocks, symbol]);
 
   const handleTrade = async () => {
     if (!sharesNum || sharesNum <= 0) return;
@@ -73,13 +106,23 @@ export default function TradePanel({ stocks, cash, holdings, onTrade }: TradePan
 
       {/* Symbol Select */}
       <div className="space-y-1.5">
+        <label className="text-xs text-white font-sans uppercase tracking-widest">Search</label>
+        <input
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          placeholder="Type symbol or company name"
+          className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-2.5 text-white font-sans text-sm focus:outline-none focus:border-white/40 transition-colors"
+        />
+      </div>
+
+      <div className="space-y-1.5">
         <label className="text-xs text-white font-sans uppercase tracking-widest">Symbol</label>
         <select
           value={symbol}
           onChange={(e) => setSymbol(e.target.value)}
           className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-2.5 text-white font-sans text-sm focus:outline-none focus:border-white/40 transition-colors"
         >
-          {stocks.map((s) => (
+          {visibleStocks.map((s) => (
             <option key={s.symbol} value={s.symbol} className="bg-[#0f0f0f]">
               {s.symbol} — ${s.price.toFixed(2)}
             </option>

@@ -5,20 +5,67 @@ import StockChart from '@/components/StockChart';
 
 export default function MarketPage() {
   const [stocks, setStocks] = useState<any[]>([]);
+  const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<string | null>(null);
   const [stockDetail, setStockDetail] = useState<any>(null);
   const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Debounce search to avoid sending too many requests
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
+  useEffect(() => {
+    const handle = window.setTimeout(() => setDebouncedSearch(search), 300);
+    return () => window.clearTimeout(handle);
+  }, [search]);
+
+  // Reset paging when the search term changes
+  useEffect(() => {
+    setStocks([]);
+    setOffset(0);
+    setHasMore(true);
+  }, [debouncedSearch]);
+
+  // Keep selected stock in sync with the currently loaded list
+  useEffect(() => {
+    if (!stocks.length) return;
+    if (!selected || !stocks.some((s) => s.symbol === selected)) {
+      setSelected(stocks[0].symbol);
+    }
+  }, [stocks, selected]);
 
   useEffect(() => {
-    const fetchMarket = async () => {
-      const m = await api.getMarket();
-      setStocks(m.stocks || []);
+    const fetchMarket = async (pageOffset: number) => {
+      const m = await api.getMarket(debouncedSearch, 50, pageOffset);
+      const incoming = m.stocks || [];
+
+      setHasMore(incoming.length >= 50);
       setLoading(false);
+
+      setStocks((prev) => {
+        if (pageOffset === 0) {
+          // Merge updated top page with any previously loaded pages.
+          const existingMap = Object.fromEntries(prev.map((s) => [s.symbol, s]));
+          incoming.forEach((item: any) => {
+            existingMap[item.symbol] = item;
+          });
+          const merged = [...incoming];
+          for (const item of prev) {
+            if (!incoming.some((i: { symbol: any; }) => i.symbol === item.symbol)) {
+              merged.push(item);
+            }
+          }
+          return merged;
+        }
+
+        return [...prev, ...incoming];
+      });
     };
-    fetchMarket();
-    const interval = setInterval(fetchMarket, 3500);
+
+    fetchMarket(0);
+    const interval = setInterval(() => fetchMarket(0), 3500);
     return () => clearInterval(interval);
-  }, []);
+  }, [debouncedSearch]);
 
   useEffect(() => {
     if (!selected) return;
@@ -30,6 +77,18 @@ export default function MarketPage() {
     const interval = setInterval(fetch, 3500);
     return () => clearInterval(interval);
   }, [selected]);
+
+  const loadMore = async () => {
+    if (!hasMore) return;
+    setLoading(true);
+    const nextOffset = offset + 50;
+    const m = await api.getMarket(debouncedSearch, 50, nextOffset);
+    const incoming = m.stocks || [];
+    setStocks((prev) => [...prev, ...incoming]);
+    setOffset(nextOffset);
+    setHasMore(incoming.length >= 50);
+    setLoading(false);
+  };
 
   return (
     <div className="h-full flex flex-col">
@@ -46,71 +105,93 @@ export default function MarketPage() {
               </div>
             </div>
 
-            {loading ? (
+            <div className="mb-4">
+              <input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search by symbol or name"
+                className="w-full bg-[#1a1a1a] border border-white/10 rounded-lg px-3 py-2 text-white font-sans text-sm focus:outline-none focus:border-white/40 transition-colors"
+              />
+            </div>
+
+            {loading && !stocks.length ? (
               <div className="grid grid-cols-2 gap-3">
-                {Array(10).fill(0).map((_, i) => (
+                {Array(10).fill(0).map((_, i: number) => (
                   <div key={i} className="skeleton h-24 rounded-xl" />
                 ))}
               </div>
             ) : (
-              <div className="grid grid-cols-2 gap-3">
-                {stocks.map((s) => {
-                  const isPos = s.change_pct >= 0;
-                  const isSel = selected === s.symbol;
+              <>
+                <div className="grid grid-cols-2 gap-3">
+                  {stocks.map((s) => {
+                    const isPos = s.change_pct >= 0;
+                    const isSel = selected === s.symbol;
 
-                  const borderColor = isPos
-                    ? 'border-emerald-400/20'
-                    : 'border-red-400/20';
+                    const borderColor = isPos
+                      ? 'border-emerald-400/20'
+                      : 'border-red-400/20';
 
-                  const bgStyle = isSel
-                    ? 'bg-[#00ffb2]/05'
-                    : `bg-gradient-to-b ${isPos ? 'from-emerald-400/20' : 'from-red-400/20'} to-[#0f0f0f]`;
+                    const bgStyle = isSel
+                      ? 'bg-[#00ffb2]/05'
+                      : `bg-gradient-to-b ${isPos ? 'from-emerald-400/20' : 'from-red-400/20'} to-[#0f0f0f]`;
 
-                  return (
+                    return (
+                      <button
+                        key={s.symbol}
+                        onClick={() => setSelected(s.symbol)}
+                        className={`text-left p-4 rounded-xl border ${borderColor} transition-all hover:scale-[1.01] active:scale-[0.99] ${bgStyle}`}
+                      >
+                        <div className="flex items-start justify-between mb-2">
+                          <div>
+                            <div className="text-white font-sans font-black text-sm tracking-widest">
+                              {s.symbol}
+                            </div>
+                            <div className="text-white/30 text-xs font-sans truncate max-w-32">
+                              {s.name}
+                            </div>
+                          </div>
+
+                          <span
+                            className={`text-[10px] font-sans px-1.5 py-0.5 rounded tracking-wider ${
+                              isPos
+                                ? 'bg-emerald-500/10 text-emerald-400'
+                                : 'bg-red-500/10 text-red-400'
+                            }`}
+                          >
+                            {s.sector}
+                          </span>
+                        </div>
+
+                        <div className="flex items-end justify-between">
+                          <div className="font-sans font-bold text-xl text-white">
+                            ${s.price.toFixed(2)}
+                          </div>
+
+                          <div
+                            className={`text-sm font-sans font-bold ${
+                              isPos ? 'text-emerald-400' : 'text-red-400'
+                            }`}
+                          >
+                            {isPos ? '+' : ''}
+                            {s.change_pct.toFixed(2)}%
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+
+                {hasMore && (
+                  <div className="mt-4 flex justify-center">
                     <button
-                      key={s.symbol}
-                      onClick={() => setSelected(s.symbol)}
-                      className={`text-left p-4 rounded-xl border ${borderColor} transition-all hover:scale-[1.01] active:scale-[0.99] ${bgStyle}`}
+                      onClick={loadMore}
+                      className="px-5 py-2 rounded-xl border border-white/20 text-xs font-sans font-bold text-white/70 hover:text-white/90 hover:border-white/30 transition"
                     >
-                      <div className="flex items-start justify-between mb-2">
-                        <div>
-                          <div className="text-white font-sans font-black text-sm tracking-widest">
-                            {s.symbol}
-                          </div>
-                          <div className="text-white/30 text-xs font-sans truncate max-w-32">
-                            {s.name}
-                          </div>
-                        </div>
-
-                        <span
-                          className={`text-[10px] font-sans px-1.5 py-0.5 rounded tracking-wider ${
-                            isPos
-                              ? 'bg-emerald-500/10 text-emerald-400'
-                              : 'bg-red-500/10 text-red-400'
-                          }`}
-                        >
-                          {s.sector}
-                        </span>
-                      </div>
-
-                      <div className="flex items-end justify-between">
-                        <div className="font-sans font-bold text-xl text-white">
-                          ${s.price.toFixed(2)}
-                        </div>
-
-                        <div
-                          className={`text-sm font-sans font-bold ${
-                            isPos ? 'text-emerald-400' : 'text-red-400'
-                          }`}
-                        >
-                          {isPos ? '+' : ''}
-                          {s.change_pct.toFixed(2)}%
-                        </div>
-                      </div>
+                      {loading ? 'Loading…' : 'Load more'}
                     </button>
-                  );
-                })}
-              </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
 

@@ -7,6 +7,8 @@ import json
 import asyncio
 import os
 import time
+from typing import Optional
+
 from market import market_engine
 from portfolio import portfolio
 
@@ -37,8 +39,14 @@ async def startup():
 # --- Market endpoints ---
 
 @app.get("/market")
-def get_market():
-    return {"stocks": market_engine.get_all()}
+def get_market(q: Optional[str] = None, limit: int = 25, offset: int = 0):
+    """Get market data.
+
+    - q: optional search query (symbol or name)
+    - limit: maximum number of results
+    - offset: pagination offset
+    """
+    return {"stocks": market_engine.get_all(q=q, limit=limit, offset=offset)}
 
 @app.get("/market/{symbol}")
 def get_stock(symbol: str):

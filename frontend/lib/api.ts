@@ -10,25 +10,32 @@ async function fetchAPI(path: string, options?: RequestInit) {
 }
 
 export const api = {
-  getMarket:       () => fetchAPI('/market'),
-  getStock:        (symbol: string) => fetchAPI(`/market/${symbol}`),
-  getPortfolio:    () => fetchAPI('/portfolio'),
-  getTransactions: () => fetchAPI('/transactions'),
+  getMarket: (q?: string, limit?: number, offset?: number) => {
+    const params = new URLSearchParams();
+    if (q) params.append("q", q);
+    if (limit != null) params.append("limit", String(limit));
+    if (offset != null) params.append("offset", String(offset));
+    const query = params.toString();
+    return fetchAPI(`/market${query ? `?${query}` : ""}`);
+  },
+  getStock: (symbol: string) => fetchAPI(`/market/${symbol}`),
+  getPortfolio: () => fetchAPI("/portfolio"),
+  getTransactions: () => fetchAPI("/transactions"),
 
   // News
-  getNews:         (limit = 25) => fetchAPI(`/api/news?limit=${limit}`),
-  refreshNews:     () => fetchAPI('/api/news/refresh', { method: 'POST' }),
+  getNews: (limit = 25) => fetchAPI(`/api/news?limit=${limit}`),
+  refreshNews: () => fetchAPI("/api/news/refresh", { method: "POST" }),
 
   buy: (symbol: string, shares: number) =>
-    fetchAPI('/trade/buy', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetchAPI("/trade/buy", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ symbol, shares }),
     }),
   sell: (symbol: string, shares: number) =>
-    fetchAPI('/trade/sell', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    fetchAPI("/trade/sell", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ symbol, shares }),
     }),
 };
