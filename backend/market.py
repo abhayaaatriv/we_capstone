@@ -1,20 +1,38 @@
 import random
-import math
+import os
 from datetime import datetime, timedelta
 from typing import Dict, List
 
+# Optional: Use real market quotes from NSE (Indian stock exchange) when installed.
+# Set USE_NSETOOLS=1 in the environment to enable.
+USE_NSETOOLS = os.getenv("USE_NSETOOLS", "0").strip().lower() in ("1", "true", "yes")
+
+try:
+    from nsetools import Nse
+
+    _nse = Nse()
+except ImportError:
+    _nse = None
+
+# If NSETools is enabled, we default to a set of popular NSE symbols.
+# Otherwise we fall back to a simulated market.
 STOCKS = {
-    "AAPL": {"name": "Apple Inc.", "base_price": 189.50, "volatility": 0.015, "sector": "Technology"},
-    "TSLA": {"name": "Tesla Inc.", "base_price": 245.80, "volatility": 0.035, "sector": "Automotive"},
-    "NVDA": {"name": "NVIDIA Corp.", "base_price": 875.20, "volatility": 0.028, "sector": "Semiconductors"},
-    "AMZN": {"name": "Amazon.com", "base_price": 178.90, "volatility": 0.018, "sector": "E-Commerce"},
-    "META": {"name": "Meta Platforms", "base_price": 512.30, "volatility": 0.022, "sector": "Social Media"},
-    "FINX": {"name": "Finora Exchange", "base_price": 45.60, "volatility": 0.045, "sector": "FinTech"},
-    "QNTM": {"name": "Quantum Systems", "base_price": 128.40, "volatility": 0.055, "sector": "Quantum Tech"},
-    "ASTRA": {"name": "AstraVentures", "base_price": 67.20, "volatility": 0.040, "sector": "Space Tech"},
-    "VEST": {"name": "Vestal Capital", "base_price": 34.80, "volatility": 0.030, "sector": "Finance"},
-    "MOCK": {"name": "Mockchain Labs", "base_price": 89.10, "volatility": 0.060, "sector": "Blockchain"},
+    "RELIANCE": {"name": "Reliance Industries", "base_price": 2500.00, "volatility": 0.020, "sector": "Energy"},
+    "TCS": {"name": "TCS", "base_price": 3600.00, "volatility": 0.018, "sector": "Technology"},
+    "INFY": {"name": "Infosys", "base_price": 1520.00, "volatility": 0.017, "sector": "Technology"},
+    "HDFCBANK": {"name": "HDFC Bank", "base_price": 1600.00, "volatility": 0.019, "sector": "Financial"},
+    "ICICIBANK": {"name": "ICICI Bank", "base_price": 900.00, "volatility": 0.022, "sector": "Financial"},
+    "LT": {"name": "Larsen & Toubro", "base_price": 3200.00, "volatility": 0.021, "sector": "Industrials"},
+    "HINDUNILVR": {"name": "Hindustan Unilever", "base_price": 2600.00, "volatility": 0.015, "sector": "Consumer"},
+    "BHARTIARTL": {"name": "Bharti Airtel", "base_price": 850.00, "volatility": 0.023, "sector": "Telecom"},
+    "AXISBANK": {"name": "Axis Bank", "base_price": 1000.00, "volatility": 0.022, "sector": "Financial"},
+    "JSWSTEEL": {"name": "JSW Steel", "base_price": 750.00, "volatility": 0.030, "sector": "Materials"},
 }
+
+# Fallback to the original mock stocks if NSETools is unavailable or disabled
+if USE_NSETOOLS and _nse is None:
+    print("[WARN] NSETools requested but not installed; falling back to simulated market.")
+    USE_NSETOOLS = False
 
 class MarketEngine:
     def __init__(self):
@@ -26,43 +44,70 @@ class MarketEngine:
     def _initialize(self):
         now = datetime.now()
         for symbol, info in STOCKS.items():
-            self.prices[symbol] = info["base_price"]
+            # If NSETools is enabled, fetch live price; otherwise fall back to base_price
+            if USE_NSETOOLS:
+                try:
+                    quote = _nse.get_quote(symbol)
+                    price = float(quote.get("lastPrice") or quote.get("closePrice") or info["base_price"])
+                except Exception:
+                    price = info["base_price"]
+            else:
+                price = info["base_price"]
+
+            self.prices[symbol] = price
             self.trends[symbol] = random.uniform(-0.001, 0.001)
-            # Generate 100 historical points
+
+            # Generate 100 historical points (random walk anchored at the current price)
             history = []
-            price = info["base_price"] * random.uniform(0.7, 0.9)
+            base = price * random.uniform(0.85, 0.95)
             for i in range(100):
                 ts = now - timedelta(minutes=(100 - i) * 5)
-                price = price * (1 + random.normalvariate(0.0005, info["volatility"] * 0.5))
-                price = max(price, 0.01)
+                base = base * (1 + random.normalvariate(0.0005, info["volatility"] * 0.5))
+                base = max(base, 0.01)
                 history.append({
                     "timestamp": ts.isoformat(),
-                    "price": round(price, 2),
-                    "volume": random.randint(1000, 50000)
+                    "price": round(base, 2),
+                    "volume": random.randint(1000, 50000),
                 })
-            # Bridge to current price
-            self.prices[symbol] = round(history[-1]["price"], 2)
+
+            # Ensure history ends at the current price (especially for NSE mode)
+            history[-1]["price"] = round(self.prices[symbol], 2)
+            self.prices[symbol] = round(self.prices[symbol], 2)
             self.history[symbol] = history
 
     def update_prices(self):
         now = datetime.now()
         for symbol, info in STOCKS.items():
-            vol = info["volatility"]
-            # Drift towards mean with random walk
-            drift = self.trends[symbol]
-            shock = random.normalvariate(0, vol)
-            change = drift + shock
-            self.prices[symbol] = round(self.prices[symbol] * (1 + change), 2)
+            if USE_NSETOOLS:
+                try:
+                    quote = _nse.get_quote(symbol)
+                    new_price = float(quote.get("lastPrice") or quote.get("closePrice") or self.prices[symbol])
+                    self.prices[symbol] = max(new_price, 1.0)
+                except Exception:
+                    # Fall back to simulated random walk if NSE fetch fails
+                    new_price = self.prices[symbol]
+                    vol = info["volatility"]
+                    drift = self.trends[symbol]
+                    shock = random.normalvariate(0, vol)
+                    change = drift + shock
+                    self.prices[symbol] = round(new_price * (1 + change), 2)
+            else:
+                vol = info["volatility"]
+                drift = self.trends[symbol]
+                shock = random.normalvariate(0, vol)
+                change = drift + shock
+                self.prices[symbol] = round(self.prices[symbol] * (1 + change), 2)
+
             self.prices[symbol] = max(self.prices[symbol], 1.0)
-            
-            # Occasionally flip trend
-            if random.random() < 0.05:
+
+            # Occasionally flip trend when using simulated mode
+            if not USE_NSETOOLS and random.random() < 0.05:
                 self.trends[symbol] = random.uniform(-0.002, 0.002)
-            
+
             self.history[symbol].append({
                 "timestamp": now.isoformat(),
                 "price": self.prices[symbol],
-                "volume": random.randint(500, 30000)
+                "volume": random.randint(500, 30000),
             })
             # Keep last 200 points
             if len(self.history[symbol]) > 200:

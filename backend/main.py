@@ -5,6 +5,7 @@ from pydantic import BaseModel
 from pathlib import Path
 import json
 import asyncio
+import os
 import time
 from market import market_engine
 from portfolio import portfolio
@@ -21,11 +22,12 @@ app.add_middleware(
 )
 
 # Background price updater
-last_update = time.time()
+# When using live NSE quotes, update interval is increased to avoid hitting API limits.
+UPDATE_INTERVAL = int(os.getenv("PRICE_UPDATE_INTERVAL", "3"))
 
 async def price_updater():
     while True:
-        await asyncio.sleep(3)
+        await asyncio.sleep(UPDATE_INTERVAL)
         market_engine.update_prices()
 
 @app.on_event("startup")

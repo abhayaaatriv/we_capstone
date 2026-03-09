@@ -2,6 +2,8 @@
 
 echo "🚀 Starting Finora Mock Stock Simulator..."
 echo ""
+# Use live NSE quotes when available (requires nsetools + internet access)
+export USE_NSETOOLS=1
 
 # Kill any existing processes on ports 3000 and 8000
 lsof -ti:8000 | xargs kill -9 2>/dev/null
