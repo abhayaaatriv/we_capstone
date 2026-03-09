@@ -7,7 +7,7 @@ const NAV = [
   { href: "/dashboard", label: "Dashboard", icon: "◈" },
   { href: "/market", label: "Market", icon: "◎" },
   { href: "/simulator", label: "Simulator", icon: "◇" },
-  { href: "/news", label: "News", icon: "◇" },
+  { href: "/news", label: "News", icon: "▶" },
 ];
 
 interface NavProps {

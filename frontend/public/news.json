@@ -1,7 +1,79 @@
 {
-  "updated_at": "2026-03-08T11:04:49.510645+00:00",
-  "count": 10,
+  "updated_at": "2026-03-09T09:15:38.598883+00:00",
+  "count": 11,
   "news": [
+    {
+      "id": "ac1191ff93",
+      "title": "The Stock Market Sounds an Alarm as Investors Get Bad News About President Trump's Economy. History Says This Will Happen Next.",
+      "body": "The U.S. stock market has stumbled in 2026. The benchmark S&P 500 (SNPINDEX: ^GSPC) has fallen more than 3% even though most companies reported better-than-expected earnings in the fourth quarter. Investors are worried about valuations, especially among artificial intelligence.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/stock-market-sounds-alarm-investors-083200677.html",
+      "published": "2026-03-09T08:32:00+00:00"
+    },
+    {
+      "id": "29283776a0",
+      "title": "China consumer inflation hits three-year high as producer deflation eases",
+      "body": "China's consumer inflation recorded the biggest jump in more than three years, as an extended holiday bolstered spending while deflation in factory-gate prices moderated.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/09/china-february-inflation-cpi-producer-prices-stimulus-economy-ppi-factory-consumer.html",
+      "published": "2026-03-09T08:29:00+00:00"
+    },
+    {
+      "id": "d02dbe8702",
+      "title": "Warren Buffett Retired Having Not Purchased His Favorite Stock -- a Company He Spent $78 Billion Buying Over 6 Years -- in 19 Months",
+      "body": "It's truly the end of an era on Wall Street. After he transformed Berkshire Hathaway (NYSE: BRKA) (NYSE: BRKB) into a trillion-dollar business over roughly six decades, billionaire Warren Buffett hung up his proverbial work coat for the final time on Dec.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/warren-buffett-retired-having-not-082600455.html",
+      "published": "2026-03-09T08:26:00+00:00"
+    },
+    {
+      "id": "cfa13e2984",
+      "title": "Is Royal Bank of Canada (RY) a Buy Post Earnings?",
+      "body": "Royal Bank of Canada (NYSE: RY ) is one of the best undervalued stocks to invest in right now . On February 27, Scotiabank lifted the price target on Royal Bank of Canada (NYSE:RY) to C$247 from C$242, reiterating an Outperform rating on the shares.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/royal-bank-canada-ry-buy-082248181.html",
+      "published": "2026-03-09T08:22:48+00:00"
+    },
+    {
+      "id": "86420cbf57",
+      "title": "Is TotalEnergies SE (TTE) the Best Undervalued Stock to Invest in Right Now?",
+      "body": "TotalEnergies SE (NYSE: TTE ) is one of the best undervalued stocks to invest in right now . Berenberg lifted the price target on TotalEnergies SE (NYSE:TTE) to EUR 62 from EUR 57 on March 3, keeping a Hold rating on the shares.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/totalenergies-se-tte-best-undervalued-081533896.html",
+      "published": "2026-03-09T08:15:33+00:00"
+    },
+    {
+      "id": "ca98b2d8c5",
+      "title": "Is Solaris Energy Infrastructure, Inc. (SEI) One of the Best Oil Stocks With Highest Upside Potential?",
+      "body": "Solaris Energy Infrastructure, Inc. (NYSE: SEI ) is one of the best oil stocks with highest upside potential .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/solaris-energy-infrastructure-inc-sei-080235603.html",
+      "published": "2026-03-09T08:02:35+00:00"
+    },
+    {
+      "id": "f747b04c53",
+      "title": "What Does the Street Think About National Energy Services Reunited Corp. (NESR) Post Earnings?",
+      "body": "National Energy Services Reunited Corp. (NASDAQ: NESR ) is one of the best oil stocks with highest upside potential .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/does-street-think-national-energy-072632626.html",
+      "published": "2026-03-09T07:26:32+00:00"
+    },
+    {
+      "id": "2107ef4b57",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq futures slammed as oil prices surge to over $110 a barrel",
+      "body": "US stock futures tumbled on Monday as oil prices surged past the $100-a-barrel mark and investors braced for the next development in a still-escalating Middle East war. Dow Jones Industrial Average futures ( YM=F ) were down 1.7% after plunging 1,000 points overnight.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-slammed-as-oil-prices-surge-to-over-110-a-barrel-224103730.html",
+      "published": "2026-03-08T22:41:03+00:00"
+    },
+    {
+      "id": "78f334b44c",
+      "title": "War disruptions may send oil to $150 to $200 a barrel. Here's my advice for stock investors",
+      "body": "In his Sunday column for Investing Club subscribers, Jim Cramer explains how investors should navigate a continued surge in oil prices.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/08/jim-cramers-advice-for-investors-during-us-iran-war-oil-surge.html",
+      "published": "2026-03-08T19:27:51+00:00"
+    },
     {
       "id": "8860905324",
       "title": "FDA vaccine head will step down in April after string of controversial decisions",
@@ -17,70 +89,6 @@
       "source": "CNBC",
       "url": "https://www.cnbc.com/2026/03/07/berkshire-ceo-greg-abel-on-working-with-buffett-kraft-heinz-and-using-all-his-salary-to-buy-the-stock.html",
       "published": "2026-03-07T13:31:42+00:00"
-    },
-    {
-      "id": "753afba22a",
-      "title": "Best money market account rates today, March 7, 2026 (best account provides 4.01% APY)",
-      "body": "Some offers on this page are from advertisers who pay us, which may affect which products we write about, but not our recommendations. See our Advertiser Disclosure .",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/personal-finance/banking/article/best-money-market-account-rates-today-saturday-march-7-2026-110033942.html",
-      "published": "2026-03-07T11:00:33+00:00"
-    },
-    {
-      "id": "fe6d6e0f8e",
-      "title": "Mortgage and refinance interest rates today, March 7, 2026: Rates rise as bond yields surge.",
-      "body": "Some offers on this page are from advertisers who pay us, which may affect which products we write about, but not our recommendations. See our Advertiser Disclosure .",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/personal-finance/mortgages/article/mortgage-refinance-interest-rates-today-saturday-march-7-2026-110008005.html",
-      "published": "2026-03-07T11:00:08+00:00"
-    },
-    {
-      "id": "d028b445b3",
-      "title": "Is Amazon Stock a Long-Term Buy?",
-      "body": "There's no denying the fact that Amazon (NASDAQ: AMZN) is one of the most disruptive businesses out there. The company upended the retail sector.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/amazon-stock-long-term-buy-083500056.html",
-      "published": "2026-03-07T08:35:00+00:00"
-    },
-    {
-      "id": "07aa16f5a7",
-      "title": "Hyperscalers Are Investing Heavily in Data Centers. These 3 Stocks Could Be Big Winners.",
-      "body": "The technology industry is currently investing massive amounts of capital into new data centers to support the rapid expansion of artificial intelligence and cloud-based services.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/hyperscalers-investing-heavily-data-centers-082500262.html",
-      "published": "2026-03-07T08:25:00+00:00"
-    },
-    {
-      "id": "e2f782931d",
-      "title": "XPeng (XPEV) Soars Ahead of Earnings; Q4 Deliveries Fall Short",
-      "body": "XPeng Inc. (NYSE:XPEV) is one of the 10 Stocks to Watch Right Now.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/xpeng-xpev-soars-ahead-earnings-061109881.html",
-      "published": "2026-03-07T06:11:09+00:00"
-    },
-    {
-      "id": "90c82638e6",
-      "title": "The Unnati Foundation IPO, NSE IX, and more...",
-      "body": "In this week’s wrapup, we talk about how India can become a shipping superpower, SEBI’s circular on life cycle funds replacing ‘solution oriented schemes’, India’s revised GDP measurement framework, the NSE International Exchange’s new platform that lets Indians invest overseas.",
-      "source": "Finshots",
-      "url": "https://finshots.in/archive/the-unnati-foundation-ipo-nse-ix-and-more-2/",
-      "published": "2026-03-07T01:30:10+00:00"
-    },
-    {
-      "id": "7d1d8b1481",
-      "title": "GOP 'big beautiful bill' poised to deliver 'shock' to ACA marketplace, health policy experts say",
-      "body": "A series of policy changes in the so-called \" big beautiful bill \" are undermining the Affordable Care Act marketplace, in ways that may at first seem relatively subtle but which add up to a major change, health policy experts say.",
-      "source": "CNBC",
-      "url": "https://www.cnbc.com/2026/03/06/gop-big-beautiful-bill-to-deal-shock-to-the-aca-marketplace.html",
-      "published": "2026-03-06T18:24:01+00:00"
-    },
-    {
-      "id": "9b571facc7",
-      "title": "India’s Social Stock Exchange just got a hat-trick IPO",
-      "body": "In today’s Finshots, we break down the Unnati Foundation Social Stock Exchange IPO, which opened for subscription last week and closes on 9th March 2026 (Monday). But here’s a quick sidenote before we begin.",
-      "source": "Finshots",
-      "url": "https://finshots.in/markets/indias-social-stock-exchange-just-got-a-hat-trick-ipo/",
-      "published": "2026-03-06T13:30:08+00:00"
     }
   ]
 }
