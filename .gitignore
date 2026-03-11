@@ -3,6 +3,8 @@ node_modules
 frontend/node_modules
 frontend/package-lock.json
 frontend/.next
+frontend/.env.local
+frontend/.env*.local
 
 __pycache__
 DS_Store
