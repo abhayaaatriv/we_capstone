@@ -40,7 +40,6 @@ export default function NewsPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
-  const [sourceFilter, setSourceFilter] = useState<string>("All");
 
   const fetchNews = async () => {
     try {
@@ -66,13 +65,8 @@ export default function NewsPage() {
     return ["All", ...Array.from(set)];
   }, [news]);
 
-  const filteredNews = useMemo(() => {
-    if (sourceFilter === "All") return news;
-    return news.filter((n) => n.source === sourceFilter);
-  }, [news, sourceFilter]);
-
-  const featured = filteredNews[0];
-  const list = filteredNews.slice(1);
+  const featured = news[0];
+  const list = news.slice(1);
 
   const formattedUpdatedAt = updatedAt
     ? new Date(updatedAt).toLocaleString(undefined, {
@@ -105,20 +99,8 @@ export default function NewsPage() {
 
       <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/10 rounded-2xl p-4">
         <div className="flex items-center justify-between gap-3 flex-wrap">
-          <div className="flex gap-2 flex-wrap">
-            {sources.map((source) => (
-              <button
-                key={source}
-                onClick={() => setSourceFilter(source)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-sans border transition-all ${
-                  sourceFilter === source
-                    ? "bg-[#00ffb2]/10 text-[#7effd4] border-[#00ffb2]/25"
-                    : "bg-[#030a10] text-white/40 border-white/10 hover:text-white/70"
-                }`}
-              >
-                {source}
-              </button>
-            ))}
+          <div className="text-white/40 text-xs font-sans">
+            Showing latest stories from all sources
           </div>
 
           <button
@@ -149,9 +131,9 @@ export default function NewsPage() {
         </div>
       )}
 
-      {!loading && !error && filteredNews.length === 0 && (
+      {!loading && !error && news.length === 0 && (
         <div className="bg-gradient-to-b from-[#1f1f1f] to-[#0f0f0f] border border-white/10 rounded-2xl p-8 text-center text-white/40 text-sm font-sans">
-          No stories found for this source yet.
+          No stories available right now.
         </div>
       )}
 
