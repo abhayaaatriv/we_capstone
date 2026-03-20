@@ -1,94 +1,166 @@
 {
-  "updated_at": "2026-03-09T09:15:38.598883+00:00",
-  "count": 11,
+  "updated_at": "2026-03-20T17:53:03.727277+00:00",
+  "count": 20,
   "news": [
     {
-      "id": "ac1191ff93",
-      "title": "The Stock Market Sounds an Alarm as Investors Get Bad News About President Trump's Economy. History Says This Will Happen Next.",
-      "body": "The U.S. stock market has stumbled in 2026. The benchmark S&P 500 (SNPINDEX: ^GSPC) has fallen more than 3% even though most companies reported better-than-expected earnings in the fourth quarter. Investors are worried about valuations, especially among artificial intelligence.",
+      "id": "2660a59391",
+      "title": "Gemini Faces Class-Action Suit Over Prediction Market Pivot, Plummeting Stock Price",
+      "body": "Crypto exchange Gemini is facing a class action lawsuit from shareholders who claim the company illegally failed to disclose its pivot into prediction markets—and overstated the viability of its struggling core business.",
       "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/stock-market-sounds-alarm-investors-083200677.html",
-      "published": "2026-03-09T08:32:00+00:00"
+      "url": "https://finance.yahoo.com/markets/crypto/articles/gemini-faces-class-action-suit-173401690.html",
+      "published": "2026-03-20T17:34:01+00:00"
     },
     {
-      "id": "29283776a0",
-      "title": "China consumer inflation hits three-year high as producer deflation eases",
-      "body": "China's consumer inflation recorded the biggest jump in more than three years, as an extended holiday bolstered spending while deflation in factory-gate prices moderated.",
+      "id": "8adba821f6",
+      "title": "13D Management Sells $5 million of Asbury Automotive Stock",
+      "body": "On Feb. 17, 2026, 13D Management LLC disclosed in a U.S.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/13d-management-sells-5-million-173336295.html",
+      "published": "2026-03-20T17:33:36+00:00"
+    },
+    {
+      "id": "502294bcbc",
+      "title": "Nasdaq slumps as Supermicro developments ripple through AI sector",
+      "body": "Markets are increasingly debating whether the Federal Reserve’s next move could shift from cuts to hikes, as expectations for rate reductions have largely faded.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/nasdaq-lead-us-stocks-lower-120003648.html",
+      "published": "2026-03-20T17:33:00+00:00"
+    },
+    {
+      "id": "49bf93f4d1",
+      "title": "Why Super Miro Computer Stock Is Plummeting Today",
+      "body": "Super Micro Computer (NASDAQ: SMCI) stock is getting pummeled in Friday's trading following news that seriously threatens the company's outlook. The server specialist's share price was down 28.2% as of 1:05 p.m.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/why-super-miro-computer-stock-172806522.html",
+      "published": "2026-03-20T17:28:06+00:00"
+    },
+    {
+      "id": "b216d04410",
+      "title": "Jim Cramer Says Wendy’s “Is Just the Wrong Stock” and Recommends Mcdonald’s Instead",
+      "body": "The Wendy’s Company (NASDAQ: WEN ) is one of the stocks mentioned during the show, as we cover everything Jim Cramer said about the market . When a caller asked about the stock during the lightning round, Cramer said: No, we cannot buy Wendy’s.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-says-wendy-just-171923875.html",
+      "published": "2026-03-20T17:19:23+00:00"
+    },
+    {
+      "id": "2dc34a0ca7",
+      "title": "Jim Cramer on Joby Aviation: “I Think It’s Incredibly Speculative, And I’m in That Era of No More Magical Investing”",
+      "body": "Joby Aviation, Inc. (NYSE: JOBY ) is one of the stocks mentioned during the show, as we cover everything Jim Cramer said about the market .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-joby-aviation-think-171920006.html",
+      "published": "2026-03-20T17:19:20+00:00"
+    },
+    {
+      "id": "b4fec4f19c",
+      "title": "Jim Cramer Explains Why “Uber Stock Caught Fire Earlier This Week”",
+      "body": "Uber Technologies, Inc. (NYSE: UBER ) is one of the stocks mentioned during the show, as we cover everything Jim Cramer said about the market .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-explains-why-uber-171918383.html",
+      "published": "2026-03-20T17:19:18+00:00"
+    },
+    {
+      "id": "82752ec1eb",
+      "title": "Jim Cramer on Boston Scientific: “This Stock Was One of the Greatest Performers, It’s Not Anymore”",
+      "body": "Boston Scientific Corporation (NYSE: BSX ) is one of the stocks mentioned during the show, as we cover everything Jim Cramer said about the market .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-boston-scientific-stock-171913169.html",
+      "published": "2026-03-20T17:19:13+00:00"
+    },
+    {
+      "id": "e7c6c602d1",
+      "title": "Is  XPeng Inc. (XPEV) one of the 10 Best Auto Manufacturer Stocks to Buy According to Analysts?",
+      "body": "XPeng Inc. (NYSE:XPEV) is one of the 10 Best Auto Manufacturer Stocks to Buy According to Analysts .",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/xpeng-inc-xpev-one-10-171603473.html",
+      "published": "2026-03-20T17:16:03+00:00"
+    },
+    {
+      "id": "f85e89aac2",
+      "title": "How does the Federal Reserve affect mortgages?",
+      "body": "The Federal Reserve doesn’t set mortgage rates outright, but its decisions do play a role in the percentages lenders offer would-be homeowners. And even if the Fed keeps its benchmark rate unchanged, mortgage rates can still fluctuate.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/federal-affects-mortgage-rates-215923595.html",
+      "published": "2026-03-20T17:01:57+00:00"
+    },
+    {
+      "id": "240aac8b0e",
+      "title": "Treasury yields climb as bonds sell off and fear grows that Fed rate cuts are off the table",
+      "body": "Treasury yields jumped on Friday as investors began to fear that the Federal Reserve may not lower interest rates at all this year, as the war in the Middle East threatens to drive inflation higher. The 10-year Treasury yield — the benchmark for U.S.",
       "source": "CNBC",
-      "url": "https://www.cnbc.com/2026/03/09/china-february-inflation-cpi-producer-prices-stimulus-economy-ppi-factory-consumer.html",
-      "published": "2026-03-09T08:29:00+00:00"
+      "url": "https://www.cnbc.com/2026/03/20/us-treasury-yields-edge-higher-as-iran-war-drives-inflation-pressure.html",
+      "published": "2026-03-20T16:49:25+00:00"
     },
     {
-      "id": "d02dbe8702",
-      "title": "Warren Buffett Retired Having Not Purchased His Favorite Stock -- a Company He Spent $78 Billion Buying Over 6 Years -- in 19 Months",
-      "body": "It's truly the end of an era on Wall Street. After he transformed Berkshire Hathaway (NYSE: BRKA) (NYSE: BRKB) into a trillion-dollar business over roughly six decades, billionaire Warren Buffett hung up his proverbial work coat for the final time on Dec.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/warren-buffett-retired-having-not-082600455.html",
-      "published": "2026-03-09T08:26:00+00:00"
-    },
-    {
-      "id": "cfa13e2984",
-      "title": "Is Royal Bank of Canada (RY) a Buy Post Earnings?",
-      "body": "Royal Bank of Canada (NYSE: RY ) is one of the best undervalued stocks to invest in right now . On February 27, Scotiabank lifted the price target on Royal Bank of Canada (NYSE:RY) to C$247 from C$242, reiterating an Outperform rating on the shares.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/royal-bank-canada-ry-buy-082248181.html",
-      "published": "2026-03-09T08:22:48+00:00"
-    },
-    {
-      "id": "86420cbf57",
-      "title": "Is TotalEnergies SE (TTE) the Best Undervalued Stock to Invest in Right Now?",
-      "body": "TotalEnergies SE (NYSE: TTE ) is one of the best undervalued stocks to invest in right now . Berenberg lifted the price target on TotalEnergies SE (NYSE:TTE) to EUR 62 from EUR 57 on March 3, keeping a Hold rating on the shares.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/totalenergies-se-tte-best-undervalued-081533896.html",
-      "published": "2026-03-09T08:15:33+00:00"
-    },
-    {
-      "id": "ca98b2d8c5",
-      "title": "Is Solaris Energy Infrastructure, Inc. (SEI) One of the Best Oil Stocks With Highest Upside Potential?",
-      "body": "Solaris Energy Infrastructure, Inc. (NYSE: SEI ) is one of the best oil stocks with highest upside potential .",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/solaris-energy-infrastructure-inc-sei-080235603.html",
-      "published": "2026-03-09T08:02:35+00:00"
-    },
-    {
-      "id": "f747b04c53",
-      "title": "What Does the Street Think About National Energy Services Reunited Corp. (NESR) Post Earnings?",
-      "body": "National Energy Services Reunited Corp. (NASDAQ: NESR ) is one of the best oil stocks with highest upside potential .",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/does-street-think-national-energy-072632626.html",
-      "published": "2026-03-09T07:26:32+00:00"
-    },
-    {
-      "id": "2107ef4b57",
-      "title": "Stock market today: Dow, S&P 500, Nasdaq futures slammed as oil prices surge to over $110 a barrel",
-      "body": "US stock futures tumbled on Monday as oil prices surged past the $100-a-barrel mark and investors braced for the next development in a still-escalating Middle East war. Dow Jones Industrial Average futures ( YM=F ) were down 1.7% after plunging 1,000 points overnight.",
-      "source": "Yahoo Finance",
-      "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-futures-slammed-as-oil-prices-surge-to-over-110-a-barrel-224103730.html",
-      "published": "2026-03-08T22:41:03+00:00"
-    },
-    {
-      "id": "78f334b44c",
-      "title": "War disruptions may send oil to $150 to $200 a barrel. Here's my advice for stock investors",
-      "body": "In his Sunday column for Investing Club subscribers, Jim Cramer explains how investors should navigate a continued surge in oil prices.",
+      "id": "c0ea4b168d",
+      "title": "UK government borrowing costs hit their highest level since 2008 as inflation fears hit the gilt market",
+      "body": "British government borrowing costs surged to their highest since the 2008 financial crisis on Friday, with the benchmark 10-year rate crossing 5% as investors scrambled to price in rising inflation risks and a growing probability of interest rate hikes later this year. U.K.",
       "source": "CNBC",
-      "url": "https://www.cnbc.com/2026/03/08/jim-cramers-advice-for-investors-during-us-iran-war-oil-surge.html",
-      "published": "2026-03-08T19:27:51+00:00"
+      "url": "https://www.cnbc.com/2026/03/20/uk-gilt-market-interest-rates-boe-inflation-reeves.html",
+      "published": "2026-03-20T16:46:19+00:00"
     },
     {
-      "id": "8860905324",
-      "title": "FDA vaccine head will step down in April after string of controversial decisions",
-      "body": "A key U.S. Food and Drug Administration official who oversees vaccines and biotech treatments will step down from the agency following multiple decisions that raised concerns within the industry. Vinay Prasad, director of the Center for Biologics Evaluation and Research, will.",
+      "id": "cc535c7938",
+      "title": "The spring housing market is on, but mortgage rates just shot higher. Here's what to know.",
+      "body": "Spring is traditionally the busiest season for home sales, and while this year's market dynamics have shifted strongly in favor of buyers, broader forces in the economy are creating significant challenges. The most important factor in any season is mortgage rates .",
       "source": "CNBC",
-      "url": "https://www.cnbc.com/2026/03/06/fda-vaccine-head-prasad-step-down.html",
-      "published": "2026-03-07T18:04:07+00:00"
+      "url": "https://www.cnbc.com/2026/03/20/spring-housing-market-mortgage-rates.html",
+      "published": "2026-03-20T16:24:18+00:00"
     },
     {
-      "id": "847b6ac379",
-      "title": "Berkshire CEO Greg Abel on working with Buffett, Kraft Heinz and using all his salary to buy the stock",
-      "body": "(This is the Warren Buffett Watch newsletter, news and analysis on all things Warren Buffett and Berkshire Hathaway.",
+      "id": "cc81a7ec02",
+      "title": "Jim Cramer says this AI leader is a tough stock to own right now — what to do next",
+      "body": "The Investing Club holds its \"Morning Meeting\" every weekday at 10:20 a.m.",
       "source": "CNBC",
-      "url": "https://www.cnbc.com/2026/03/07/berkshire-ceo-greg-abel-on-working-with-buffett-kraft-heinz-and-using-all-his-salary-to-buy-the-stock.html",
-      "published": "2026-03-07T13:31:42+00:00"
+      "url": "https://www.cnbc.com/2026/03/20/jim-cramer-says-this-ai-leader-is-a-tough-stock-to-own-right-now.html",
+      "published": "2026-03-20T16:22:05+00:00"
+    },
+    {
+      "id": "379b7df26a",
+      "title": "FedEx beats on top and bottom lines, raises guidance on strong performance",
+      "body": "FedEx on Thursday reported strong fiscal third-quarter results that beat Wall Street's expectations. The company also raised its guidance for fiscal 2026, projecting revenue growth of 6% to 6.5% compared with analyst estimates of up 5.6%.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/19/fedex-fdx-q3-2026-earnings.html",
+      "published": "2026-03-20T14:56:47+00:00"
+    },
+    {
+      "id": "3780d2d0a9",
+      "title": "Super Micro shares tank 25% after employees charged with smuggling Nvidia chips to China",
+      "body": "The U.S. Attorney's Office for the Southern District of New York has charged associates of an unidentified U.S. server maker with illegally diverting billions of dollars in Nvidia -powered servers to China. The U.S. government has been trying to figure out how high-powered chips.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/19/us-tech-execs-smuggled-nvidia-chips-to-china-prosecutors-say.html",
+      "published": "2026-03-20T14:56:13+00:00"
+    },
+    {
+      "id": "c1a1988e8e",
+      "title": "Fed Governor Waller urges caution for now, says rate cuts possible later in the year",
+      "body": "Federal Reserve Governor Christopher Waller on Friday expressed caution about current economic conditions but still sees the opportunity for interest rate cuts later this year.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/20/fed-gov-waller-urges-caution-for-now-cuts-possible-later-in-the-year.html",
+      "published": "2026-03-20T13:36:43+00:00"
+    },
+    {
+      "id": "fa54bf4e8a",
+      "title": "Gold rebounds, but silver extends losses as oscillating oil prices spark market volatility",
+      "body": "Gold prices rebounded slightly on Friday, but silver prices sank further, after both metals suffered heavy selling pressure in the previous session. By 6:17 a.m.",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/20/gold-silver-price-metal-market-oil-brent-wti-futures-iran-war-inflation.html",
+      "published": "2026-03-20T10:38:42+00:00"
+    },
+    {
+      "id": "8638b20e55",
+      "title": "Stock market today: Dow, S&P 500, Nasdaq sink as oil swings amid Iran war jitters",
+      "body": "US stocks pulled back on Friday while oil prices stayed high as investors weighed the odds that the US might attempt to take over a key Iranian energy terminal to help unblock the Strait of Hormuz.",
+      "source": "Yahoo Finance",
+      "url": "https://finance.yahoo.com/news/live/stock-market-today-dow-sp-500-nasdaq-sink-as-oil-swings-amid-iran-war-jitters-225246829.html",
+      "published": "2026-03-19T22:52:46+00:00"
+    },
+    {
+      "id": "e3a3edb102",
+      "title": "FDA approves higher dose version of weight loss drug Wegovy as Novo Nordisk tries to win back market share",
+      "body": "The Food and Drug Administration on Thursday approved a higher-dose version of Novo Nordisk 's blockbuster weight loss injection Wegovy, as the company pushes to win back market share from chief rival Eli Lilly .",
+      "source": "CNBC",
+      "url": "https://www.cnbc.com/2026/03/19/fda-approves-high-dose-version-of-novo-nordisks-obesity-drug-wegovy.html",
+      "published": "2026-03-19T17:48:22+00:00"
     }
   ]
 }

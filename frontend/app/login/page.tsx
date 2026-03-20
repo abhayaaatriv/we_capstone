@@ -56,60 +56,11 @@ export default function LoginPage() {
 
   return (
     <main className="min-h-[calc(100vh-120px)] bg-[#030a10] flex items-center justify-center px-6 text-white relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#00ffb2]/5 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#00ffb2]/5 rounded-full blur-3xl animate-pulse delay-1000" />
-      </div>
-
       <div className="w-full max-w-md relative z-10">
         {/* Logo Section */}
         <div className="text-center mb-8">
-          <div className="inline-block relative">
-            {/* Glowing ring effect */}
-            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#00ffb2] to-[#00d4ff] opacity-20 blur-xl animate-pulse" />
-            
-            {/* Logo container */}
-            <div className="relative bg-[#030a10]/80 backdrop-blur-xl border-2 border-[#00ffb2]/30 rounded-full p-6 shadow-[0_0_40px_#00ffb230]">
-              <svg
-                className="w-16 h-16 text-[#00ffb2]"
-                viewBox="0 0 64 64"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M32 8L8 20V44L32 56L56 44V20L32 8Z"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="animate-[dash_3s_ease-in-out_infinite]"
-                  style={{
-                    strokeDasharray: "200",
-                    strokeDashoffset: "200",
-                  }}
-                />
-                <path
-                  d="M32 20V44M20 26L32 32L44 26M20 38L32 44L44 38"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="opacity-60"
-                />
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="4"
-                  fill="currentColor"
-                  className="animate-pulse"
-                />
-              </svg>
-            </div>
-          </div>
-          
           <h1 className="text-4xl font-bold mt-6 bg-gradient-to-r from-[#00ffb2] to-[#00d4ff] bg-clip-text text-transparent">
-            Finora
+            FINORA
           </h1>
           <p className="text-white/40 text-sm mt-2">Mock Trading Simulator</p>
         </div>

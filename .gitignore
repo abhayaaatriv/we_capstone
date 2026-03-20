@@ -7,7 +7,7 @@ frontend/.env.local
 frontend/.env*.local
 
 __pycache__
-DS_Store
+.DS_Store
 *.log
 *.env
 
